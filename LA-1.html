@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="LA-1.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body class="dark-mode">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="#">Syeda.</a>
+        </div>
+        <div class="bar">
+            <a href="#home">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#contact">CONTACT</a>
+            <button class="themetoggle" onclick="toggleTheme()">🌙</button>
+        </div>
+    </nav>
+    <!-- Home -->
+    <div class="container" id="home">
+        <div class="content">
+            <header>
+                <h1 id="greeting"></h1>
+                <div class="animation">
+                    I&#39;m <span class="animation-ani"> </span>
+                </div>
+                <h3>Welcome to My Portfolio...</h3>
+                <p>I specialize in crafting responsive and visually appealing web interfaces with HTML, CSS, and JavaScript.</p>
+                <div class="buttons">
+                    <button class="hire" >Hire Me</button>
+                    <button class="talk" onclick="location.href='#contact'">Let's Talk</button>
+                </div>
+            </header>
+            <div class="icons">
+                <a href="https://www.facebook.com/" class="bx bxl-facebook"></a>
+                <a href="https://twitter.com/explore" class="bx bxl-twitter"></a>
+                <a href="https://pk.linkedin.com/" class="bx bxl-linkedin"></a>
+            </div>
+        </div>
+        <img class="profile-img" src="bbb.jpg" alt="Profile Picture">
+    </div>
+    <!-- About Me -->
+    <section class="about" id="about">
+        <h1>About <span>Me</span></h1>
+        <img src="girl.avif" alt="About Image">
+        <h2> I'm Syeda Nabia Ali</h2>
+        <h3>Frontend Developer</h3>
+        <p>I am passionate about creating user-friendly, efficient, and modern web applications.</p>
+        <div class="skills">
+            <h2>My Skills</h2>
+            <ul>
+                <li>Graphic Design</li>
+                <li>UI/UX Design</li>
+                <li>Web Development</li>
+            </ul>
+        </div>
+    </section>
+    <!-- Contact Me -->
+    <section class="contactus" id="contactus">
+        <h1>Contact <span>Me</span></h1>
+        <form id="contactForm">
+            <label for="name">Enter Your Name</label>
+            <input type="text" id="name" placeholder="Enter Here" name="name" required><br />
+
+            <label for="email">Enter Your Email</label>
+            <input type="email" id="email" placeholder="Enter Here" name="email" required><br />
+
+
+            <label for="message">Your Message</label>
+            <textarea id="message" placeholder="Enter Here" name="message" required></textarea><br />
+
+            <button type="submit">Submit</button>
+            <p id="formMessage"></p>
+        </form>
+    </section>
+    <!-- JavaScript -->
+    <script>
+        function toggleTheme() {
+            let body = document.body;
+            let toggleButton = document.querySelector(".themetoggle");
+            body.classList.toggle("light-mode");
+            body.classList.toggle("dark-mode");
+            toggleButton.textContent = body.classList.contains("dark-mode") ? "🌙" : "🌞";
+        }
+
+        document.getElementById("contactForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            let name = document.getElementById("name").value;
+            let message = document.getElementById("message").value;
+            let formMessage = document.getElementById("formMessage");
+
+            if (name === "" || message === "") {
+                formMessage.innerText = "All fields are required!";
+                formMessage.style.color = "#00abf0";
+            } else {
+                formMessage.innerText = `Thank you, ${name}! Your message has been received.`;
+                formMessage.style.color = "#00abf0";
+                document.getElementById("contactForm").reset();
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let hour = new Date().getHours();
+            let greeting = "Good Morning";
+            if (hour >= 12 && hour < 18) greeting = "Good Afternoon";
+            else if (hour >= 18) greeting = "Good Evening";
+            document.getElementById("greeting").innerText = `${greeting}!`;
+        });
+        const text = ["Syeda", "Student"];
+        let speed = 100;
+        let textElement = document.querySelector("animation-ani");
+        let textindex = 0;
+        let index = 0;
+        function TextAnimation() {
+            if (index < text[textindex].length) {
+                textElement.innerHTML += text[textindex].charAt(index);
+                index++;
+                setTimeout(TextAnimation, speed);
+            }
+            else {
+                setTimeout(eraseText, 1000);
+            }
+        }
+    </script>
+</body>
+</html>
+
